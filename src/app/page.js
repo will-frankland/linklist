@@ -1,22 +1,28 @@
-import Image from "next/image";
-import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <main>
-      <header>
-        <Link href={'/'}>LinkList</Link>
-        <nav>
-          <Link href="/about">About</Link>
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/contact">Contact</Link>
-        </nav>
-        <div>
-          <Link href={'/login'}>Sign In</Link>
-          <Link href={'/register'}>Create Account</Link>
+      <Header />
+      <section className="p-8 pt-32 max-w-4xl mx-auto">
+        <div className="max-w-md mb-8">
+          <h1 className="text-6xl font-bold">
+            Your one link
+            <br /> for everything
+          </h1>
+          <h2 className="text-gray-500 text-xl mt-6">
+            Share your links, music, social profiles, contact info and more on
+            one page
+          </h2>
         </div>
-      </header>
-      <secion></secion>
+        <form className="inline-flex items-center shadow-lg shadow-gray-700/20">
+          <span className="bg-white py-4 pl-4">linklist.to/</span>
+          <input type="text" className="py-4" placeholder="username" />
+          <button type="submit" className="bg-blue-500 text-white py-4 px-6">
+            Join for free
+          </button>
+        </form>
+      </section>
     </main>
   );
 }
