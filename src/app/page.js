@@ -1,7 +1,7 @@
 import HeroForm from "@/components/forms/HeroForm";
 
 
-export default function Home() {
+const Home = () => {
   return (
     <main>
       <section className="pt-32">
@@ -20,3 +20,4 @@ export default function Home() {
     </main>
   );
 }
+ export default Home;

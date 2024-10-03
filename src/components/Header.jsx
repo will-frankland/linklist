@@ -6,7 +6,7 @@ import LogoutButton from "./buttons/LogoutButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 
-export default async function Header() {
+const Header = async () => {
   const session = await getServerSession(authOptions);
   return (
     <header className="bg-white border-b py-4">
@@ -40,3 +40,5 @@ export default async function Header() {
     </header>
   );
 }
+
+export default Header;

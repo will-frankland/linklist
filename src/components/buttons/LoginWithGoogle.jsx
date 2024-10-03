@@ -3,7 +3,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signIn } from "next-auth/react";
 
-export default function LoginWithGoogle() {
+const LoginWithGoogle = () => {
   return (
     <button
       onClick={() => signIn('google')}
@@ -14,3 +14,4 @@ export default function LoginWithGoogle() {
     </button>
   );
 }
+ export default LoginWithGoogle;

@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
 
-export default function HeroForm() {
+const HeroForm = () => {
   useEffect(() => {
     if (
       'localStorage' in window
@@ -11,7 +11,7 @@ export default function HeroForm() {
     ) {
       const username = window.localStorage.getItem('desiredUsername');
       window.localStorage.removeItem('desiredUsername')
-      redirect('/account?username=' + username)
+      redirect('/account?desiredUsername=' + username)
     }
   }, []);
   const handleSubmit = async (event) => {
@@ -38,3 +38,5 @@ export default function HeroForm() {
     </form>
   );
 }
+
+export default HeroForm;
