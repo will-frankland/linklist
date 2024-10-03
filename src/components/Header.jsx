@@ -3,8 +3,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 export default async function Header() {
-  const session = await getServerSession(authOptions)
-  console.log({ session })
+  const session = await getServerSession(authOptions);
   return (
     <header className="bg-white border-b py-4">
       <div className="max-w-4xl flex justify-between items-center mx-auto px-8">
@@ -17,8 +16,15 @@ export default async function Header() {
           </nav>
         </div>
         <nav className="flex gap-4 text-sm text-slate-500">
-          <Link href={"/login"}>Sign In</Link>
-          <Link href={"/register  "}>Create Account</Link>
+          {!!session && (
+            <Link href={"/account"}>Hello, {session?.user?.name}</Link>
+          )}
+          {!session && (
+            <>
+              <Link href={"/login"}>Sign In</Link>
+              <Link href={"/register  "}>Create Account</Link>
+            </>
+          )}
         </nav>
       </div>
     </header>
