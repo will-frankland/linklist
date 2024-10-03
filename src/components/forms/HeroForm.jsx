@@ -1,9 +1,10 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
 
 const HeroForm = () => {
+  useSession();
   useEffect(() => {
     if (
       'localStorage' in window
