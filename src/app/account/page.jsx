@@ -4,10 +4,10 @@ import { redirect } from "next/navigation";
 
 import UsernameForm from "@/components/forms/UsernameForm";
 
-const AccountPage = async ({ searchParams, ...rest }) => {
-  console.log(rest)
+const AccountPage = async ({ searchParams }) => {
   const session = await getServerSession(authOptions);
   const desiredUsername = searchParams?.desiredUsername;
+  console.log('desName', desiredUsername)
 
   if (!session) {
     redirect("/");

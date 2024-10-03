@@ -2,16 +2,23 @@
 import RightArrowIcon from "@/components/icons/RightArrowIcon";
 import { grabUsername } from "@/actions/grabUsername";
 import { useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import SubmitButton from "../buttons/SubmitButton";
 
 const UsernameForm = ({ desiredUsername }) => {
   const [taken, setTaken] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (formData) => {
+    setIsLoading(true);
+    console.log("Form data submitted: ", formData.get("username"))
     const result = await grabUsername(formData);
+    console.log("grabUsername result: ", result);
+    setIsLoading(false);
     setTaken(result === false);
     if (result) {
-      redirect("/account?created=/" + formData.get("username"));
+      router.push("/account?created=/" + formData.get("username"));
     }
   };
 
@@ -34,13 +41,11 @@ const UsernameForm = ({ desiredUsername }) => {
             Username Taken
           </div>
         )}
-        <button
-          type="submit"
-          className="text-white bg-blue-500 py-2 px-4 mx-auto w-full flex gap-2 items-center justify-center"
-        >
+        <SubmitButton>
           <span>Claim your username</span>
           <RightArrowIcon />
-        </button>
+        </SubmitButton>
+       
       </div>
     </form>
   );

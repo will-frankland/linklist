@@ -1,15 +1,22 @@
 "use server";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Page } from "@/models/page";
 import mongoose from "mongoose";
+import { getServerSession } from "next-auth";
 
 export const grabUsername = async (formData) => {
   const username = formData.get("username");
   mongoose.connect(process.env.MONGO_URI);
-  
+
   const existingPageDoc = await Page.findOne({ uri: username });
   if (existingPageDoc) {
     return false;
   } else {
-    return await Page.create({ uri: username });
+    const session = await getServerSession(authOptions);
+    await Page.create({
+      uri: username,
+      owner: session?.user?.email,
+    });
+    return true
   }
 };
