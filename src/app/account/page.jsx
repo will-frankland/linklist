@@ -3,15 +3,23 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 import UsernameForm from "@/components/forms/UsernameForm";
+import { Page } from "@/models/page";
 
 const AccountPage = async ({ searchParams }) => {
   const session = await getServerSession(authOptions);
   const desiredUsername = searchParams?.desiredUsername;
-  console.log('desName', desiredUsername)
 
   if (!session) {
-    redirect("/");
+    return redirect("/");
   }
+  const page = await Page.findOne({ owner: session?.user?.email });
+
+  if (page) {
+    return (
+      <div>Yoiur page is: /{page.uri}</div>
+    )
+  }
+
   return (
     <div>
       <UsernameForm desiredUsername={desiredUsername} />

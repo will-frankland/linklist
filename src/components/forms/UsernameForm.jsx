@@ -12,13 +12,13 @@ const UsernameForm = ({ desiredUsername }) => {
 
   const handleSubmit = async (formData) => {
     setIsLoading(true);
-    console.log("Form data submitted: ", formData.get("username"))
+    
     const result = await grabUsername(formData);
-    console.log("grabUsername result: ", result);
+
     setIsLoading(false);
     setTaken(result === false);
     if (result) {
-      router.push("/account?created=/" + formData.get("username"));
+      router.push("/account?created=" + formData.get('username'));
     }
   };
 
