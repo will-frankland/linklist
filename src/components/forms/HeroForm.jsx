@@ -13,7 +13,7 @@ const HeroForm = ({ user }) => {
     ) {
       const username = window.localStorage.getItem('desiredUsername');
       window.localStorage.removeItem('desiredUsername')
-      redirect('/account?desiredUsername=' + username)
+      router.push('/account?desiredUsername=' + username)
     }
   }, []);
 
